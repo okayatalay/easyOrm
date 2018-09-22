@@ -52,7 +52,7 @@ attribute is increased, this section operations will be performed under onUpgrad
 		</tables>
   
   Above defination creates 2 table which are informations and users.<br> <strong>information</strong> table has ID,address and phone columns
-  <br><strong>users</strong> table has ID,name,lastName,number and infoID columns. ID is primary key. infoID is foreign key and it refers
+  <br><strong>users</strong> table has ID,name,lastName,number and infoID columns. ID is <strong>primary key</strong>. infoID is <strong>foreign key </strong>and it refers
   to information table' s ID'filed.
   
 # section2
