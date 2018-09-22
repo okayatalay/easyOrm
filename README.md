@@ -175,7 +175,7 @@ if we select some fileds, <code>columns</code> should be used like <strong> sele
 	<li><strong>alias</strong> it can be string. Aim is to assign a allias for the field. Valid for Select Queries</li>
 	<li><strong>UUID</strong> it can be true/false. Aim is to generate unique number. Valid for Insert Queries</li>
 	
-	To be continued...
+To be continued...
 <br>Mixed Example and it's sql view<br>
 	
 	
@@ -222,43 +222,43 @@ All field must have getter/setter method. The class must have default constructo
 		private Integer number, infoID;
 
 		public Integer getID() {
-				return ID;
+			return ID;
 		}
 
 		public void setID(Integer ID) {
-				this.ID = ID;
+			this.ID = ID;
 		}
 
 		public String getName() {
-				return name;
+			return name;
 		}
 
 		public void setName(String name) {
-				this.name = name;
+			this.name = name;
 		}
 
 		public String getLastName() {
-				return lastName;
+			return lastName;
 		}
 
 		public void setLastName(String lastName) {
-				this.lastName = lastName;
+			this.lastName = lastName;
 		}
 
 		public Integer getNumber() {
-				return number;
+			return number;
 		}
 
 		public void setNumber(Integer number) {
-				this.number = number;
+			this.number = number;
 		}
 
 		public Integer getInfoID() {
-				return infoID;
+			return infoID;
 		}
 
 		public void setInfoID(Integer infoID) {
-				this.infoID = infoID;
+			this.infoID = infoID;
 		}
 	}
 
@@ -267,11 +267,11 @@ To create DataBase:
 
 	EasyORM easyORM = EasyOrmFactory.getOrCreateDataBase(this, "dbName");
 	try {
-			EasyOrmFactory.verboseAllQueries(true);
-			EasyOrmFactory.setExactMatch(false);
-			easyORM.registerXMLSchema("db.xml");
+		EasyOrmFactory.verboseAllQueries(true);
+		EasyOrmFactory.setExactMatch(false);
+		easyORM.registerXMLSchema("db.xml");
 	} catch (Exception e) {
-			e.printStackTrace();
+		e.printStackTrace();
 	}
 
 To register DataSyncListener<br>
@@ -307,6 +307,6 @@ Execute performer interface methods are<br>
 	void updateObject(String queryName, Object object) throws QueryNotFoundException, QueryExecutionException, FieldNotFoundException;
 	
 	
-	
-	
-	
+		
+# Feel Free to get in touch with me
+okay.atalay38@hotmail.com
