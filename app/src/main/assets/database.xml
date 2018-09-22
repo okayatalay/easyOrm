@@ -1,0 +1,130 @@
+<easyORM version="1">
+    <tables>
+        <table name="informations">
+            <column name="ID" type="integer"/>
+            <column name="address" size="250" type="varchar"/>
+            <column name="phone" nullable="false" size="15" type="varchar"/>
+        </table>
+        <table name="users">
+            <column name="ID" autoIncrement="true" primary="true" type="integer"/>
+            <column name="name" size="20" type="varchar" unique="true"/>
+            <column name="lastName" size="20" type="varchar"/>
+            <column name="number" type="integer"/>
+            <column name="infoID" reference="informations:ID" type="integer"/>
+        </table>
+    </tables>
+
+
+    <!--this section runs only table is created-->
+    <initialize>
+        <rawquery
+            query="insert into informations(ID,address,phone) values(1,'First Address','00905343332211')"/>
+        <insert into="users">
+            <column name="name" value="lionell"/>
+            <column name="lastName" value="messi"/>
+            <column name="number" value="10"/>
+            <column name="infoID" value="1"/>
+        </insert>
+    </initialize>
+
+    <queries>
+        <!--select operation-->
+        <query name="getInformation" type="select">
+            <table name="informations"/>
+            <where name="ID"/>
+        </query>
+        <query name="getAllUser" type="select">
+            <table name="users"/>
+        </query>
+        <query name="getUserByConstValue" distinct="true" type="select">
+            <table name="users"/>
+            <where name="lastName" value="messi"/>
+        </query>
+        <query name="getUserLike" columns="*" type="select">
+            <table name="users"/>
+            <where name="lastName" like="true" type="varchar" value="%?%"/>
+        </query>
+
+        <query name="getUserAndInformations" columns="*" type="select">
+            <table name="users"/>
+            <table name="informations"/>
+            <where name="users.infoID" process="and" static="false" value="informations.ID"/>
+            <where name="users.ID" value="?"/>
+        </query>
+
+        <!--insert operaiton-->
+        <query name="addUser" dataSync="true" type="insert">
+            <table name="users"/>
+            <column name="name" type="varchar" value="?"/>
+            <column name="lastName" value="?"/>
+            <column name="number" type="integer" value="?"/>
+            <column name="infoID" type="integer" value="?"/>
+        </query>
+        <query name="addInformations" type="insert">
+            <table name="informations"/>
+            <column name="ID" type="integer" value="?"/>
+            <column name="address" type="double" value="?"/>
+            <column name="phone" type="double" value="?"/>
+        </query>
+
+        <!--delete operation-->
+        <query name="deleteUserByID" dataSync="true" type="delete">
+            <table name="users"/>
+            <where name="ID" value="?"/>
+        </query>
+        <query name="deleteInformationByID" dataSync="true" type="delete">
+            <table name="informations"/>
+            <where name="ID" value="?"/>
+        </query>
+        <query name="deleteUserByPhone" dataSync="true" type="delete">
+            <table name="users"/>
+            <where name="infoID" value="?">
+                <select columns="ID">
+                    <table name="informations"/>
+                    <where name="phone" value="?"/>
+                </select>
+            </where>
+        </query>
+
+        <!--update operations-->
+        <query name="upduteUserByID" dataSync="true" type="update">
+            <table name="users"/>
+            <column name="name" value="?"/>
+            <column name="lastName" value="?"/>
+            <column name="number" value="?"/>
+            <where name="ID" value="?"/>
+        </query>
+        <query name="upduteInformationByID" dataSync="true" type="update">
+            <table name="informations"/>
+            <column name="address" value="?"/>
+            <column name="phone" value="?"/>
+            <where name="ID" value="?"/>
+        </query>
+
+        <query name="upduteUserByPhone" type="update">
+            <table name="users"/>
+            <column name="name" value="?"/>
+            <column name="lastName" value="?"/>
+            <where name="infoID" value="?">
+                <select columns="ID">
+                    <table name="informations"/>
+                    <where name="phone" value="?"/>
+                </select>
+            </where>
+        </query>
+    </queries>
+
+    <upgrades>
+        <!--this ection will be executed when the version is set to 2-->
+        <upgrade version="2">
+            <table name="locations">
+                <column name="ID" type="integer"/>
+                <column name="latitude" size="250" type="float"/>
+                <column name="longitude" size="250" type="float"/>
+                <column name="userID" reference="users:ID" type="integer"/>
+            </table>
+        </upgrade>
+
+    </upgrades>
+
+</easyORM>
