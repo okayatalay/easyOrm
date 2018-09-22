@@ -9,7 +9,7 @@ Xml file based on 4 main tags. They are below<br>
 <br><code>queries</code> Developers must define their all queries in this section. Every Query must have unique name.
 <br><code>upgrades</code>Day after day, We need to upgrade the database, Main Section <code>easyORM</code> must have version attribute. When this
 attribute is increased, this section operations will be performed under onUpgrade method which is provided by SqLite.
-<br><strong> Let's look at each section more closer</strong><br>
+<br><strong> Let's look at each section closer</strong><br>
 
 # Usage
 
