@@ -307,6 +307,15 @@ Execute performer interface methods are<br>
 	void updateObject(String queryName, Object object) throws QueryNotFoundException, QueryExecutionException, FieldNotFoundException;
 	
 	
-		
-# Feel Free to get in touch with me
+# Installation
+Download last version(.aar file) on release tab and copy the file to your libs folder then insert below line into gradle Module file
+	
+	dependencies {
+		:
+		:
+		compile files('libs/easyorm.aar')
+	}
+
+# Contact
+<h3>Feel Free to get in touch with me</h3>
 okay.atalay38@hotmail.com
