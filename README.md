@@ -308,14 +308,25 @@ Execute performer interface methods are<br>
 	
 	
 # Installation
-Download last version(.aar file) on release tab and copy the file to your libs folder then insert below line into gradle Module file
+compile 'com.github.okayatalay:easyOrm:1.0.0' line should be added to dependencies scope.	
 	
 	dependencies {
 		:
 		:
-		compile files('libs/easyorm.aar')
+		compile 'com.github.okayatalay:easyOrm:1.0.0'
 	}
 
+maven { url 'https://jitpack.io' } should be added to into project built.gradle file under allprojects -> repositories
+	
+	allprojects {
+	    repositories {
+		google()
+		jcenter()
+		// this is important
+		maven { url 'https://jitpack.io' }
+	    }
+	}
+	
 # Contact
 <h3>Feel Free to get in touch with me</h3>
 okay.atalay38@hotmail.com
