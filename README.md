@@ -147,15 +147,14 @@ the upgrade tags only run its version is between db oldVersion and dbNewVersion.
 We use the tag to create new table. <code>table</code> tag must have a unique <strong> name </strong>.
 <code>table</code> tag should have <code>column</code> defination and <strong>column</strong> name points the table filed name. So it must be unique.
 <br/> <h3> Column Tag Attributes </h3>
-
-	<li><strong>name</strong> must be unique</li>
-	<li><strong>type</strong> can be varchar, integer, date, boolean, float. Default values is varchar</li>
-	<li><strong>primary</strong> can be true/false. It is used to define <strong>Primary Key</strong>. Default values is false</li>
-	<li><strong>autoIncrement</strong> can be true/false. It is used to define <strong>Auto incr</strong> Field. Default values is false</li>
-	<li><strong>unique</strong> can be true/false. It is used to define <strong>Unique</strong> Field. Default values is false</li>
-	<li><strong>size</strong> should be integer value. It is used to assign size to field. Default values is 50</li>
-	<li><strong>nullable</strong> can be true/false.. It is used to accept null value for the column(Field). Default values is false</li>
-	<li><strong>reference</strong> can be true/false.. It is used to Define <strong>Foreign Key</strong>.Usage is <code>tableName:itsField</code>. Default values is false</li>
+<li><strong>name</strong> must be unique</li>
+<li><strong>type</strong> can be varchar, integer, date, boolean, float. Default values is varchar</li>
+<li><strong>primary</strong> can be true/false. It is used to define <strong>Primary Key</strong>. Default values is false</li>
+<li><strong>autoIncrement</strong> can be true/false. It is used to define <strong>Auto incr</strong> Field. Default values is false</li>
+<li><strong>unique</strong> can be true/false. It is used to define <strong>Unique</strong> Field. Default values is false</li>
+<li><strong>size</strong> should be integer value. It is used to assign size to field. Default values is 50</li>
+<li><strong>nullable</strong> can be true/false.. It is used to accept null value for the column(Field). Default values is false</li>
+<li><strong>reference</strong> can be true/false.. It is used to Define <strong>Foreign Key</strong>.Usage is <code>tableName:itsField</code>. Default values is false</li>
 	
 # Query Tag Attributes more Detail
 
@@ -167,16 +166,15 @@ if we select some fileds, <code>columns</code> should be used like <strong> sele
 <code>query</code> tag can have <strong> table,column,where,orderBy,groupBys,havings</strong> tags.
 <br><code>query</code> tags can have dataSync attribute. it is set to true,a data sync event is distributed to all listeners after this query is executed
 <h3> Table Tag Attributes</h3>
-	<li><strong>name</strong> it is mandatory attribute. it must point the valid table name. More than 1 <code>table</code> tags can be used.All tables will be join </li>
+<li><strong>name</strong> it is mandatory attribute. it must point the valid table name. More than 1 <code>table</code> tags can be used.All tables will be join </li>
 <h3>Columns Tag Attributes</h3>
+<li><strong>name</strong> it is mandatory attribute. it must point the table field</li>
+<li><strong>sum</strong> it can be true/false. Aim is to calculate sum of filed's values. Default value is false. Valid for Select Queries</li>
+<li><strong>avg</strong> it can be true/false. Aim is to calculate avg of filed's values. Default value is false. Valid for Select Queries</li>
+<li><strong>count</strong> it can be true/false. Aim is to calculate total count of filed's values. Default value is false. Valid for Select Queries</li>
+<li><strong>alias</strong> it can be string. Aim is to assign a allias for the field. Valid for Select Queries</li>
+<li><strong>UUID</strong> it can be true/false. Aim is to generate unique number. Valid for Insert Queries</li>
 
-	<li><strong>name</strong> it is mandatory attribute. it must point the table field</li>
-	<li><strong>sum</strong> it can be true/false. Aim is to calculate sum of filed's values. Default value is false. Valid for Select Queries</li>
-	<li><strong>avg</strong> it can be true/false. Aim is to calculate avg of filed's values. Default value is false. Valid for Select Queries</li>
-	<li><strong>count</strong> it can be true/false. Aim is to calculate total count of filed's values. Default value is false. Valid for Select Queries</li>
-	<li><strong>alias</strong> it can be string. Aim is to assign a allias for the field. Valid for Select Queries</li>
-	<li><strong>UUID</strong> it can be true/false. Aim is to generate unique number. Valid for Insert Queries</li>
-	
 To be continued...
 <br>Mixed Example and it's sql view<br>
 	
@@ -315,7 +313,7 @@ database.xml file must be under <code>Assets</code> folder. To create <Strong>As
 <br>
 	
 ![Assets Folder creation](https://github.com/okayatalay/easyOrm/blob/master/assets.jpg)
-<strong>compile 'com.github.okayatalay:easyOrm:1.0.0'</strong> line should be added to dependencies scope.	
+<br><br><strong>compile 'com.github.okayatalay:easyOrm:1.0.0'</strong> line should be added to dependencies scope.	
 	
 	dependencies {
 		:
