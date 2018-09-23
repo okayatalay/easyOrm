@@ -5,9 +5,9 @@ This orm allows developer to create simple database using xml files.
 
 Xml file based on 4 main tags. They are below<br>
 <code>tables</code> We define all tables in this section<br>
-<code>initialize</code> Some tables should be initialize when they are created. So, to make this action, developers use this section. This section only runs after tables are created.
+<code>initialize</code> Some tables should be initialize when they are created. if you want to initialize your tables, you  must use this section. This section only runs after tables are created.
 <br><code>queries</code> Developers must define their all queries in this section. Every Query must have unique name.
-<br><code>upgrades</code>Day after day, We need to upgrade the database, Main Section <code>easyORM</code> must have version attribute. When this
+<br><code>upgrades</code>Day after day, If we need to upgrade the our database, Main Section tag <code>easyORM</code> must have version attribute. When this
 attribute is increased, this section operations will be performed under onUpgrade method which is provided by SqLite.
 <br><strong> Let's look at each section closer</strong><br>
 
@@ -144,9 +144,10 @@ the upgrade tags only run its version is between db oldVersion and dbNewVersion.
 
 # Table Tag Attributes more Detail
 
-We use the tag to create new table. <code>table</table tag must have a unique <strong> name </strong>.
+We use the tag to create new table. <code>table</code> tag must have a unique <strong> name </strong>.
 <code>table</code> tag should have <code>column</code> defination and <strong>column</strong> name points the table filed name. So it must be unique.
-<br> <h3> Column Tag Attributes</h3>
+<br/> <h3> Column Tag Attributes </h3>
+
 	<li><strong>name</strong> must be unique</li>
 	<li><strong>type</strong> can be varchar, integer, date, boolean, float. Default values is varchar</li>
 	<li><strong>primary</strong> can be true/false. It is used to define <strong>Primary Key</strong>. Default values is false</li>
@@ -164,10 +165,11 @@ A <code>query</code> must have a unique<strong>name</strong> attribute and <code
 if we select some fileds, <code>columns</code> should be used like <strong> select="name,lastname,number" </strong><br>
 <br>
 <code>query</code> tag can have <strong> table,column,where,orderBy,groupBys,havings</strong> tags.
-<br><code>query</code> tags can have dataSync attribute. it it is set to true,a data sync event is distributed to all listeners after this query is executed
+<br><code>query</code> tags can have dataSync attribute. it is set to true,a data sync event is distributed to all listeners after this query is executed
 <h3> Table Tag Attributes</h3>
 	<li><strong>name</strong> it is mandatory attribute. it must point the valid table name. More than 1 <code>table</code> tags can be used.All tables will be join </li>
-<h3> Columns Tag Attributes</h3>
+<h3>Columns Tag Attributes</h3>
+
 	<li><strong>name</strong> it is mandatory attribute. it must point the table field</li>
 	<li><strong>sum</strong> it can be true/false. Aim is to calculate sum of filed's values. Default value is false. Valid for Select Queries</li>
 	<li><strong>avg</strong> it can be true/false. Aim is to calculate avg of filed's values. Default value is false. Valid for Select Queries</li>
@@ -308,7 +310,12 @@ Execute performer interface methods are<br>
 	
 	
 # Installation
-compile 'com.github.okayatalay:easyOrm:1.0.0' line should be added to dependencies scope.	
+
+database.xml file must be under <code>Assets</code> folder. To create <Strong>Assets</Strong> folder, <code>File->New->Folder->Assets Folder</code>. This selection create <strong>Assets</strong> folder next to(the same level) <code>res</code> folder.
+<br>
+	
+![Assets Folder creation](https://github.com/okayatalay/easyOrm/blob/master/assets.jpg)
+<strong>compile 'com.github.okayatalay:easyOrm:1.0.0'</strong> line should be added to dependencies scope.	
 	
 	dependencies {
 		:
@@ -320,9 +327,8 @@ maven { url 'https://jitpack.io' } should be added to into project built.gradle 
 	
 	allprojects {
 	    repositories {
-		google()
-		jcenter()
-		// this is important
+		:....
+		:....
 		maven { url 'https://jitpack.io' }
 	    }
 	}
