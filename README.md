@@ -5,7 +5,7 @@ This orm allows developer to create simple database using xml files.
 
 Xml file based on 4 main tags. They are below<br>
 <code>tables</code> We define all tables in this section<br>
-<code>initialize</code> Same tables should be initialize when they are created. So, to make this action, developers use this section. This section only runs after tables are created.
+<code>initialize</code> Some tables should be initialize when they are created. So, to make this action, developers use this section. This section only runs after tables are created.
 <br><code>queries</code> Developers must define their all queries in this section. Every Query must have unique name.
 <br><code>upgrades</code>Day after day, We need to upgrade the database, Main Section <code>easyORM</code> must have version attribute. When this
 attribute is increased, this section operations will be performed under onUpgrade method which is provided by SqLite.
