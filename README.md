@@ -333,4 +333,3 @@ maven { url 'https://jitpack.io' } should be added to into project built.gradle 
 	
 # Contact
 <h3>Feel Free to get in touch with me</h3>
-okay.atalay38@hotmail.com
