@@ -1,5 +1,5 @@
 # EasyOrm
-xml based Android ORM
+Xml based Android ORM
 
 This orm allows developer to create simple database using xml files.
 
@@ -174,8 +174,24 @@ if we select some fileds, <code>columns</code> should be used like <strong> sele
 <li><strong>count</strong> it can be true/false. Aim is to calculate total count of filed's values. Default value is false. Valid for Select Queries</li>
 <li><strong>alias</strong> it can be string. Aim is to assign a allias for the field. Valid for Select Queries</li>
 <li><strong>UUID</strong> it can be true/false. Aim is to generate unique number. Valid for Insert Queries</li>
+<h3> Where Tag Attributes</h3>
+<li><strong>name</strong> it is mandatory attribute. it must point the table field</li>
+<li><strong>less</strong> it is optional attribute. if it is set to true, condition is marked as less(<). Default value is false.</li>
+<li><strong>greater</strong> it is optional attribute. if it is set to true, condition is marked as greater(>). Default value is false.</li>
+<li><strong>equals</strong> it is optional attribute. if it is set to true, condition is marked as greater(=). Default value is true.</li>
+<li><strong>process</strong> When we are using multiple <code>where</code> tags, where conditions will be processed as <strong> and </strong> operation. We can set <code>process</code> to <strong>and/or</strong>. Default value is <strong> and </strong>.</li>
+	
+<h4>Examples</h4>
 
-To be continued...
+if we want to define <strong> <= </strong> condition, <code> where </code> tag should have <strong>less="true"</strong> and <strong>equals="true"</strong>.
+<br>if we want to define <strong> < </strong> condition, <code>where</code> tag should have <strong>less="false"</strong> and <strong>equals="true"</strong>.
+<br>if we want to define <strong> != </strong> condition, <code>where</code> tag should have <strong>equals="false"</strong>.
+<br>
+	
+	<where name="name" value="?" process="or" /> 
+	<where name="lastName" value="?" /> 
+<br> Above xml code snippet output is <code> where name=? or lastName=? </code>
+<br>To be continued...
 <br>Mixed Example and it's sql view<br>
 	
 	
