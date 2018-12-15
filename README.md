@@ -184,7 +184,7 @@ if we select some fileds, <code>columns</code> should be used like <strong> sele
 <h4>Examples</h4>
 
 if we want to define <strong> <= </strong> condition, <code> where </code> tag should have <strong>less="true"</strong> and <strong>equals="true"</strong>.
-<br>if we want to define <strong> < </strong> condition, <code>where</code> tag should have <strong>less="false"</strong> and <strong>equals="true"</strong>.
+<br>if we want to define <strong> < </strong> condition, <code>where</code> tag should have <strong>less="true"</strong> and <strong>equals="false"</strong>.
 <br>if we want to define <strong> != </strong> condition, <code>where</code> tag should have <strong>equals="false"</strong>.
 <br>
 	
