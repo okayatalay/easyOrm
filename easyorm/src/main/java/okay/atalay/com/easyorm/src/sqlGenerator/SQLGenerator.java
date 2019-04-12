@@ -415,9 +415,9 @@ public class SQLGenerator {
         if (whereClauses.size() > 0) {
             parseWhere(whereClauses, builder);
         }
-        parseOrderBy(query, builder);
         parseGroupBy(query, builder);
         parseHaving(query, builder);
+        parseOrderBy(query, builder);
 
     }
 

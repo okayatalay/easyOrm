@@ -78,7 +78,7 @@ public class QueryUpdate extends Query implements SqlImpIF, DataSyncImpIF, Where
     public void parseSql() {
         String query = SQLGenerator.getInstance().getQuery(this);
         if (EasyOrmFactory.verboseQueries) {
-            Log.d("queryUpdate:", getName() + ":" + query);
+            Log.d("EasyORM.queryUpdate", getName() + ":" + query);
         }
         sql = new Sql();
         sql.setSql(query);

@@ -38,8 +38,6 @@ public abstract class Query implements BaseQueryIF{
         this.type = queryType;
     }
 
-    public void parseSql() {
-
-    }
+    public abstract void parseSql();
 
 }

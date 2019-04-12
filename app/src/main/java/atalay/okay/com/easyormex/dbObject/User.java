@@ -4,9 +4,8 @@ package atalay.okay.com.easyormex.dbObject;
  * Created by 1 on 22.09.2018.
  */
 
-public class User {
+public class User extends Person {
     private Integer ID;
-    private String name, lastName;
     private Integer number, infoID;
 
     public Integer getID() {
@@ -15,22 +14,6 @@ public class User {
 
     public void setID(Integer ID) {
         this.ID = ID;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public Integer getNumber() {

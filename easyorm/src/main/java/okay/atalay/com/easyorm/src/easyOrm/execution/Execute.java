@@ -115,7 +115,7 @@ class Execute {
                     params.append(parms[i]);
                 }
             }
-            Log.d("Execution Queries", sql.getSql() + " parms:" + params.toString());
+            Log.d("EasyORM.Exec Queries", sql.getSql() + " parms:" + params.toString());
         }
     }
 }
