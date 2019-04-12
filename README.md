@@ -31,7 +31,7 @@ attribute is increased, this section operations will be performed under onUpgrad
 	</easyORM>
 
   
-# section1
+# Section 1
 <code> tables </code> tag should include the <code> table </code> tags. this section allows us to define our all tables.
 <h5> usage example is </h5>
 <br>
@@ -55,7 +55,7 @@ attribute is increased, this section operations will be performed under onUpgrad
   <br><strong>users</strong> table has ID,name,lastName,number and infoID columns. ID is <strong>primary key</strong>. infoID is <strong>foreign key </strong>and it refers
   to information table' s ID'filed.
   
-# section2
+# Section 2
 <code> initialize </code> section runs only when tables are created. If we initialize some fields/tables, it is good to use this part.
 There is 2 type of usage. First one is <strong>rawquery</strong>. Second one is <strong> insert </strong>
 <br> <code>rawQuery</code> allows us to define sql queries.
@@ -72,7 +72,7 @@ There is 2 type of usage. First one is <strong>rawquery</strong>. Second one is 
 				<column name="infoID" value="1"/>
 			</insert>
 		</initialize>
-# section3
+# Section 3
 <code> queries </code> this section should have <strong> query </strong> tags. <code> query </code> tags allow us to define select/insert/update/delete
 operation methods. <br> <code>query</code> must have type and name attribute. type attibute points the query type which can be select/insert/update/delete.
 <br><h5> usage example is </h5>
@@ -127,7 +127,7 @@ operation methods. <br> <code>query</code> must have type and name attribute. ty
 		</where>
 	</query>
 	
-# section 4
+# Section 4
 <code> upgrades</code> section can have <code>upgrade</code> tags. all <strong>upgrade</strong> tags must have version attribute. Because, 
 the upgrade tags only run its version is between db oldVersion and dbNewVersion.<br><code> Upgrade</code> tag can have <strong>table</strong> creation or 
 <strong> rawQuery </strong><br> let's look at the usage: <br>
@@ -192,7 +192,7 @@ if we want to define <strong> <= </strong> condition, <code> where </code> tag s
 	<where name="lastName" value="?" /> 
 <br> Above xml code snippet output is <code> where name=? or lastName=? </code>
 <br>To be continued...
-<br>Mixed Example and it's sql view<br>
+<br>Mixed Example and its sql view<br>
 	
 	
 	<query name="getUser" columns="name,surname" type="select">
@@ -220,9 +220,9 @@ Above example' s sql code is : <br>
 		select  name,surname, SUM(ID)  as SYUm, AVG(ID)  as total 
 		from users  
 		Where ID <= ?   
-		ORDER BY  name asc , surname  
 		GROUP BY  name , surname ,  SUM(ID)  ,  AVG(ID) 
 		HAVING  AVG(ID)  <= ?  or  SUM(ID)  >= ?
+		ORDER BY  name desc , surname asc
 	
 	
 # Code Snippets
