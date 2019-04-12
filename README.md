@@ -1,15 +1,15 @@
 # EasyOrm
-xml based Android ORM
+Xml based Android ORM
 
 This orm allows developer to create simple database using xml files.
 
 Xml file based on 4 main tags. They are below<br>
 <code>tables</code> We define all tables in this section<br>
-<code>initialize</code> Same tables should be initialize when they are created. So, to make this action, developers use this section. This section only runs after tables are created.
+<code>initialize</code> Some tables should be initialize when they are created. if you want to initialize your tables, you  must use this section. This section only runs after tables are created.
 <br><code>queries</code> Developers must define their all queries in this section. Every Query must have unique name.
-<br><code>upgrades</code>Day after day, We need to upgrade the database, Main Section <code>easyORM</code> must have version attribute. When this
+<br><code>upgrades</code>Day after day, If we need to upgrade the our database, Main Section tag <code>easyORM</code> must have version attribute. When this
 attribute is increased, this section operations will be performed under onUpgrade method which is provided by SqLite.
-<br><strong> Let's look at each section more closer</strong><br>
+<br><strong> Let's look at each section closer</strong><br>
 
 # Usage
 
@@ -52,7 +52,7 @@ attribute is increased, this section operations will be performed under onUpgrad
 		</tables>
   
   Above defination creates 2 table which are informations and users.<br> <strong>information</strong> table has ID,address and phone columns
-  <br><strong>users</strong> table has ID,name,lastName,number and infoID columns. ID is primary key. infoID is foreign key and it refers
+  <br><strong>users</strong> table has ID,name,lastName,number and infoID columns. ID is <strong>primary key</strong>. infoID is <strong>foreign key </strong>and it refers
   to information table' s ID'filed.
   
 # section2
@@ -144,17 +144,17 @@ the upgrade tags only run its version is between db oldVersion and dbNewVersion.
 
 # Table Tag Attributes more Detail
 
-We use the tag to create new table. <code>table</table tag must have a unique <strong> name </strong>.
+We use the tag to create new table. <code>table</code> tag must have a unique <strong> name </strong>.
 <code>table</code> tag should have <code>column</code> defination and <strong>column</strong> name points the table filed name. So it must be unique.
-<br> <h3> Column Tag Attributes</h3>
-	<li><strong>name</strong> must be unique</li>
-	<li><strong>type</strong> can be varchar, integer, date, boolean, float. Default values is varchar</li>
-	<li><strong>primary</strong> can be true/false. It is used to define <strong>Primary Key</strong>. Default values is false</li>
-	<li><strong>autoIncrement</strong> can be true/false. It is used to define <strong>Auto incr</strong> Field. Default values is false</li>
-	<li><strong>unique</strong> can be true/false. It is used to define <strong>Unique</strong> Field. Default values is false</li>
-	<li><strong>size</strong> should be integer value. It is used to assign size to field. Default values is 50</li>
-	<li><strong>nullable</strong> can be true/false.. It is used to accept null value for the column(Field). Default values is false</li>
-	<li><strong>reference</strong> can be true/false.. It is used to Define <strong>Foreign Key</strong>.Usage is <code>tableName:itsField</code>. Default values is false</li>
+<br/> <h3> Column Tag Attributes </h3>
+<li><strong>name</strong> must be unique</li>
+<li><strong>type</strong> can be varchar, integer, date, boolean, float. Default values is varchar</li>
+<li><strong>primary</strong> can be true/false. It is used to define <strong>Primary Key</strong>. Default values is false</li>
+<li><strong>autoIncrement</strong> can be true/false. It is used to define <strong>Auto incr</strong> Field. Default values is false</li>
+<li><strong>unique</strong> can be true/false. It is used to define <strong>Unique</strong> Field. Default values is false</li>
+<li><strong>size</strong> should be integer value. It is used to assign size to field. Default values is 50</li>
+<li><strong>nullable</strong> can be true/false.. It is used to accept null value for the column(Field). Default values is false</li>
+<li><strong>reference</strong> can be true/false.. It is used to Define <strong>Foreign Key</strong>.Usage is <code>tableName:itsField</code>. Default values is false</li>
 	
 # Query Tag Attributes more Detail
 
@@ -164,18 +164,34 @@ A <code>query</code> must have a unique<strong>name</strong> attribute and <code
 if we select some fileds, <code>columns</code> should be used like <strong> select="name,lastname,number" </strong><br>
 <br>
 <code>query</code> tag can have <strong> table,column,where,orderBy,groupBys,havings</strong> tags.
-<br><code>query</code> tags can have dataSync attribute. it it is set to true,a data sync event is distributed to all listeners after this query is executed
+<br><code>query</code> tags can have dataSync attribute. it is set to true,a data sync event is distributed to all listeners after this query is executed
 <h3> Table Tag Attributes</h3>
-	<li><strong>name</strong> it is mandatory attribute. it must point the valid table name. More than 1 <code>table</code> tags can be used.All tables will be join </li>
-<h3> Columns Tag Attributes</h3>
-	<li><strong>name</strong> it is mandatory attribute. it must point the table field</li>
-	<li><strong>sum</strong> it can be true/false. Aim is to calculate sum of filed's values. Default value is false. Valid for Select Queries</li>
-	<li><strong>avg</strong> it can be true/false. Aim is to calculate avg of filed's values. Default value is false. Valid for Select Queries</li>
-	<li><strong>count</strong> it can be true/false. Aim is to calculate total count of filed's values. Default value is false. Valid for Select Queries</li>
-	<li><strong>alias</strong> it can be string. Aim is to assign a allias for the field. Valid for Select Queries</li>
-	<li><strong>UUID</strong> it can be true/false. Aim is to generate unique number. Valid for Insert Queries</li>
+<li><strong>name</strong> it is mandatory attribute. it must point the valid table name. More than 1 <code>table</code> tags can be used.All tables will be join </li>
+<h3>Columns Tag Attributes</h3>
+<li><strong>name</strong> it is mandatory attribute. it must point the table field</li>
+<li><strong>sum</strong> it can be true/false. Aim is to calculate sum of filed's values. Default value is false. Valid for Select Queries</li>
+<li><strong>avg</strong> it can be true/false. Aim is to calculate avg of filed's values. Default value is false. Valid for Select Queries</li>
+<li><strong>count</strong> it can be true/false. Aim is to calculate total count of filed's values. Default value is false. Valid for Select Queries</li>
+<li><strong>alias</strong> it can be string. Aim is to assign a allias for the field. Valid for Select Queries</li>
+<li><strong>UUID</strong> it can be true/false. Aim is to generate unique number. Valid for Insert Queries</li>
+<h3> Where Tag Attributes</h3>
+<li><strong>name</strong> it is mandatory attribute. it must point the table field</li>
+<li><strong>less</strong> it is optional attribute. if it is set to true, condition is marked as less(<). Default value is false.</li>
+<li><strong>greater</strong> it is optional attribute. if it is set to true, condition is marked as greater(>). Default value is false.</li>
+<li><strong>equals</strong> it is optional attribute. if it is set to true, condition is marked as greater(=). Default value is true.</li>
+<li><strong>process</strong> When we are using multiple <code>where</code> tags, where conditions will be processed as <strong> and </strong> operation. We can set <code>process</code> to <strong>and/or</strong>. Default value is <strong> and </strong>.</li>
 	
-To be continued...
+<h4>Examples</h4>
+
+if we want to define <strong> <= </strong> condition, <code> where </code> tag should have <strong>less="true"</strong> and <strong>equals="true"</strong>.
+<br>if we want to define <strong> < </strong> condition, <code>where</code> tag should have <strong>less="true"</strong> and <strong>equals="false"</strong>.
+<br>if we want to define <strong> != </strong> condition, <code>where</code> tag should have <strong>equals="false"</strong>.
+<br>
+	
+	<where name="name" value="?" process="or" /> 
+	<where name="lastName" value="?" /> 
+<br> Above xml code snippet output is <code> where name=? or lastName=? </code>
+<br>To be continued...
 <br>Mixed Example and it's sql view<br>
 	
 	
@@ -308,14 +324,28 @@ Execute performer interface methods are<br>
 	
 	
 # Installation
-Download last version(.aar file) on release tab and copy the file to your libs folder then insert below line into gradle Module file
+
+database.xml file must be under <code>Assets</code> folder. To create <Strong>Assets</Strong> folder, <code>File->New->Folder->Assets Folder</code>. This selection create <strong>Assets</strong> folder next to(the same level) <code>res</code> folder.
+<br>
+	
+![Assets Folder creation](https://github.com/okayatalay/easyOrm/blob/master/assets.jpg)
+<br><br><strong>compile 'com.github.okayatalay:easyOrm:1.0.0'</strong> line should be added to dependencies scope.	
 	
 	dependencies {
 		:
 		:
-		compile files('libs/easyorm.aar')
+		compile 'com.github.okayatalay:easyOrm:1.0.0'
 	}
 
+maven { url 'https://jitpack.io' } should be added to into project built.gradle file under allprojects -> repositories
+	
+	allprojects {
+	    repositories {
+		:....
+		:....
+		maven { url 'https://jitpack.io' }
+	    }
+	}
+	
 # Contact
 <h3>Feel Free to get in touch with me</h3>
-okay.atalay38@hotmail.com
