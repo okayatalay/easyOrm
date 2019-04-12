@@ -33,7 +33,7 @@ public class EasyExecuteImpl implements okay.atalay.com.easyorm.src.easyOrm.Easy
 
     private List<BaseQueryIF> queries;
     private EasyORM easyORM;
-    private final String QUERY_TAG = "query:";
+    private final String QUERY_TAG = "EasyORM.query";
     private Object lock = new Object();
 
     public EasyExecuteImpl(List<BaseQueryIF> queries, EasyORM easyORM) {
@@ -136,7 +136,14 @@ public class EasyExecuteImpl implements okay.atalay.com.easyorm.src.easyOrm.Easy
                             T t = input.newInstance();
                             for (NameValuePair nvp : result.get(i)) {
                                 try {
-                                    Field field = t.getClass().getDeclaredField(nvp.getName());
+                                    Field field;
+                                    try {
+                                        //try to get field from main class
+                                        field = t.getClass().getDeclaredField(nvp.getName());
+                                    } catch (NoSuchFieldException e) {
+                                        //maybe field can be in superclass
+                                        field = t.getClass().getSuperclass().getDeclaredField(nvp.getName());
+                                    }
                                     if (field.getGenericType() == Date.class) {
                                         Method method = t.getClass().getMethod("set" + nvp.getName().substring(0, 1).toUpperCase().replace("İ", "I") + nvp.getName().substring(1), field.getType());
                                         method.invoke(t, new Date(nvp.getValue().toString()));

@@ -50,4 +50,8 @@ public class Select extends Query implements ColumnSelectIF, WhereImpIF, SelectI
         return star;
     }
 
+    @Override
+    public void parseSql() {
+        
+    }
 }

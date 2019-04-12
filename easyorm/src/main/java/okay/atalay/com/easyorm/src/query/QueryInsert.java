@@ -64,7 +64,7 @@ public class QueryInsert extends Query implements SqlImpIF, DataSyncImpIF, Colum
     public void parseSql() {
         String query = SQLGenerator.getInstance().getQuery(this);
         if (EasyOrmFactory.verboseQueries) {
-            Log.d("queryInsert:", getName() + ":" + query);
+            Log.d("EasyORM.queryInsert", getName() + ":" + query);
         }
         sql = new Sql();
         sql.setSql(query);

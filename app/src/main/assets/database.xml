@@ -112,6 +112,31 @@
                 </select>
             </where>
         </query>
+
+
+
+
+        <query name="getUser11111" columns="name,surname" type="select">
+            <column name="ID" alias="SYUm" sum="true"/>
+            <column name="ID" alias="total" avg="true"/>
+            <table name="users"/>
+            <where name="ID" less="true" value="?"/>
+            <orderby name="name" describe="desc"/>
+            <orderby name="surname"/>
+            <groupbys>
+                <groupby name="name"/>
+                <groupby name="surname"/>
+                <groupby name="ID" sum="true"/>
+                <groupby name="ID" avg="true"/>
+            </groupbys>
+            <havings>
+                <having name="ID" avg="true" equals="true" less="true" process="or" value="?"/>
+                <having name="ID" equals="true" greater="true" process="or" sum="true" value="?"/>
+            </havings>
+        </query>
+
+
+
     </queries>
 
     <upgrades>

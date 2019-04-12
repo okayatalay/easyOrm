@@ -79,7 +79,7 @@ public class QuerySelect extends Query implements SqlImpIF, DataSyncImpIF, Where
     public void parseSql() {
         String query = SQLGenerator.getInstance().getQuery(this);
         if (EasyOrmFactory.verboseQueries) {
-            Log.d("querySelect:", getName() + ":" + query);
+            Log.d("EasyORM.querySelect", getName() + ":" + query);
         }
         sql = new Sql();
         sql.setSql(query);

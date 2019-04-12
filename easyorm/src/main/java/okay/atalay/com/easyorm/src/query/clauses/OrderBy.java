@@ -11,9 +11,9 @@ public class OrderBy {
     public OrderBy(String name, String describe) {
         this.name = name;
         if ("desc".equals(describe)) {
-            this.describe = "asc";
+            this.describe = "desc";
         } else {
-            this.describe = describe;
+            this.describe = "asc";
         }
     }
 
