@@ -492,7 +492,13 @@ Execution performer interface methods are<br>
 
 	void updateObject(String queryName, Object object) throws QueryNotFoundException, QueryExecutionException, FieldNotFoundException;
 ```	
-	
+
+# log Level
+	Easy ORM supports only 1 log level. To enable all logs, you should use following code. All logs will be dumped with <strong>EasyORM</strong> prefix.
+```java
+	EasyOrmFactory.verboseAllQueries(true);
+```
+
 # Installation
 
 database.xml file must be under <code>Assets</code> folder. To create <Strong>Assets</Strong> folder, <code>File->New->Folder->Assets Folder</code>. This selection create <strong>Assets</strong> folder next to(the same level) <code>res</code> folder.
