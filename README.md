@@ -491,10 +491,11 @@ Execution performer interface methods are<br>
 	void update(String queryName, Object[] params) throws QueryNotFoundException, QueryExecutionException;
 
 	void updateObject(String queryName, Object object) throws QueryNotFoundException, QueryExecutionException, FieldNotFoundException;
-```	
+```
 
 # log Level
-	Easy ORM supports only 1 log level. To enable all logs, you should use following code. All logs will be dumped with <strong>EasyORM</strong> prefix.
+Easy ORM supports only 1 log level. To enable all logs, you should use following code. All logs will be dumped with <strong>EasyORM</strong> prefix.
+	
 ```java
 	EasyOrmFactory.verboseAllQueries(true);
 ```
