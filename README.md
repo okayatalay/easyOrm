@@ -438,21 +438,17 @@ Xml Defination is,
 		</upgrades>
 
 	</easyORM>
-```	
+```
 
 To register DataSyncListener<br>
-<code>
 ```java
 	EasyOrmFactory.registerDataSync(this);
 ```
-</code>
 <br>To register CreateTable and Upgrade table events<br>
-<code>
 	
 ```java
 	easyORM.registerCreateTableListener(this);
 ```
-</code>
 
 <br>To use insert, update , select, delete queries:
 ```java
