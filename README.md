@@ -146,12 +146,13 @@ the upgrade tags only run its version is between db oldVersion and dbNewVersion.
 		</table>
 		<rawquery query="insert into locations(ID,longitude,userID) values(1,55.55,66.66,123456)"/>
 	</upgrade>
-```xml
+```
 
 # Table Tag Attributes more Detail
 
 We use the tag to create new table. <code>table</code> tag must have a unique <strong> name </strong>.
 <code>table</code> tag should have <code>column</code> defination and <strong>column</strong> name points the table filed name. So it must be unique.
+```html
 <br/> <h3> Column Tag Attributes </h3>
 <li><strong>name</strong> must be unique</li>
 <li><strong>type</strong> can be varchar, integer, date, boolean, float. Default values is varchar</li>
@@ -161,6 +162,7 @@ We use the tag to create new table. <code>table</code> tag must have a unique <s
 <li><strong>size</strong> should be integer value. It is used to assign size to field. Default values is 50</li>
 <li><strong>nullable</strong> can be true/false.. It is used to accept null value for the column(Field). Default values is false</li>
 <li><strong>reference</strong> can be true/false.. It is used to Define <strong>Foreign Key</strong>.Usage is <code>tableName:itsField</code>. Default values is false</li>
+```
 	
 # Query Tag Attributes more Detail
 
@@ -193,9 +195,10 @@ if we want to define <strong> <= </strong> condition, <code> where </code> tag s
 <br>if we want to define <strong> < </strong> condition, <code>where</code> tag should have <strong>less="true"</strong> and <strong>equals="false"</strong>.
 <br>if we want to define <strong> != </strong> condition, <code>where</code> tag should have <strong>equals="false"</strong>.
 <br>
-	
+```xml
 	<where name="name" value="?" process="or" /> 
 	<where name="lastName" value="?" /> 
+```
 <br> Above xml code snippet output is <code> where name=? or lastName=? </code>
 <br>To be continued...
 <br>Mixed Example and its sql view<br>
