@@ -511,7 +511,7 @@ database.xml file must be under <code>Assets</code> folder. To create <Strong>As
 	dependencies {
 		:
 		:
-		compile 'com.github.okayatalay:easyOrm:1.0.1'
+		compile 'com.github.okayatalay:easyOrm:1.0.2'
 	}
 
 maven { url 'https://jitpack.io' } should be added to into project built.gradle file under allprojects -> repositories
