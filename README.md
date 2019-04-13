@@ -311,11 +311,29 @@ Xml Defination is,
 ```xml
 	<easyORM version="1">
 	    <tables>
+		 <!--
+			  __________________________
+			 |      informations        |
+			 |__________________________|
+			 |ID | address   |  phone   | 
+			 |___|___________|__________|
+			 |___|___________|__________|
+			 |___|___________|__________|
+		 -->
 		<table name="informations">
 			<column name="ID" type="integer"/>
 			<column name="address" size="250" type="varchar"/>
 			<column name="phone" nullable="false" size="15" type="varchar"/>
 		</table>
+		 <!--
+			  ___________________________________________
+			 |                   users                   |
+			 |___________________________________________|
+			 |ID | name  |  lastName   | number | infoID |
+			 |___|_______|_____________|________|________|
+			 |___|_______|_____________|________|________|
+			 |___|_______|_____________|________|________|
+		 -->
 		<table name="users">
 			<column name="ID" autoIncrement="true" primary="true" type="integer"/>
 			<column name="name" size="20" type="varchar" unique="true"/>
