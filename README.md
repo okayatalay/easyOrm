@@ -152,7 +152,7 @@ the upgrade tags only run its version is between db oldVersion and dbNewVersion.
 
 We use the tag to create new table. <code>table</code> tag must have a unique <strong> name </strong>.
 <code>table</code> tag should have <code>column</code> defination and <strong>column</strong> name points the table filed name. So it must be unique.
-```html
+
 <br/> <h3> Column Tag Attributes </h3>
 <li><strong>name</strong> must be unique</li>
 <li><strong>type</strong> can be varchar, integer, date, boolean, float. Default values is varchar</li>
@@ -162,7 +162,7 @@ We use the tag to create new table. <code>table</code> tag must have a unique <s
 <li><strong>size</strong> should be integer value. It is used to assign size to field. Default values is 50</li>
 <li><strong>nullable</strong> can be true/false.. It is used to accept null value for the column(Field). Default values is false</li>
 <li><strong>reference</strong> can be true/false.. It is used to Define <strong>Foreign Key</strong>.Usage is <code>tableName:itsField</code>. Default values is false</li>
-```
+
 	
 # Query Tag Attributes more Detail
 
@@ -223,7 +223,7 @@ if we want to define <strong> <= </strong> condition, <code> where </code> tag s
 	</query>
 ```
 Above example' s sql code is : <br>
-
+```sql
 	getUser
 		select  name,surname, SUM(ID)  as SYUm, AVG(ID)  as total 
 		from users  
@@ -231,7 +231,7 @@ Above example' s sql code is : <br>
 		GROUP BY  name , surname ,  SUM(ID)  ,  AVG(ID) 
 		HAVING  AVG(ID)  <= ?  or  SUM(ID)  >= ?
 		ORDER BY  name desc , surname asc
-	
+```	
 	
 # Code Snippets
 
@@ -442,20 +442,26 @@ Xml Defination is,
 
 To register DataSyncListener<br>
 <code>
+```java
 	EasyOrmFactory.registerDataSync(this);
+```
 </code>
 <br>To register CreateTable and Upgrade table events<br>
 <code>
+	
+```java
 	easyORM.registerCreateTableListener(this);
+```
 </code>
 
 <br>To use insert, update , select, delete queries:
-
+```java
 	easyORM.getEasyExecute().insert("queryName", dbObject);
+```
 
 Execution performer interface methods are<br>
 
-
+```java
 	void delete(String queryName, Object[] params) throws QueryNotFoundException, QueryExecutionException;
 
 	void deleteObject(String queryName, Object object) throws QueryNotFoundException, QueryExecutionException, FieldNotFoundException;
@@ -471,7 +477,7 @@ Execution performer interface methods are<br>
 	void update(String queryName, Object[] params) throws QueryNotFoundException, QueryExecutionException;
 
 	void updateObject(String queryName, Object object) throws QueryNotFoundException, QueryExecutionException, FieldNotFoundException;
-	
+```	
 	
 # Installation
 
