@@ -72,6 +72,6 @@ public class Constants {
     public static String[] COLUMN_ATTRIBUTE_NAMES = {ATTRIBUTE_TYPE, ATTRIBUTE_SIZE, ATTRIBUTE_NAME,
             ATTRIBUTE_AUTOINCR, ATTRIBUTE_PRIMARY, ATTRIBUTE_REFERENCE, ATTRIBUTE_UUID};
 
-    public static final String NUMERIC = "int,integer,double,float";
+    public static final String NUMERIC = "int,integer,double,float,boolean";
 
 }
