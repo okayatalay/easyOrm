@@ -64,7 +64,11 @@ public class EasyExecuteImpl implements okay.atalay.com.easyorm.src.easyOrm.Easy
         int i = 0;
         String[] parms = new String[parameters.length];
         for (Object o : parameters) {
-            parms[i++] = o.toString();
+            if (o instanceof Boolean) {
+                parms[i++] = o.toString().equals("true") ? "1" : "0";
+            } else {
+                parms[i++] = o.toString();
+            }
         }
         synchronized (lock) {
             Execute.executeSelection(easyORM.getReadableDatabase(), q.getSql(), parms, new ColumnNotify() {

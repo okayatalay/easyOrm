@@ -48,6 +48,9 @@ public class Where {
         } else {
             this.equals = true;
         }
+        if ("boolean".equals(type.toLowerCase()) && !this.value.equals("?")) {
+            this.value = this.value.equals("true") ? "1" : "0";
+        }
 
     }
 
