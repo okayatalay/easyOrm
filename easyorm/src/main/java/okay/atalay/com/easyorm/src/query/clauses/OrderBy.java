@@ -9,6 +9,9 @@ public class OrderBy {
     private String describe;
 
     public OrderBy(String name, String describe) {
+        if (name == null || name.equals("")) {
+            name = "?";
+        }
         this.name = name;
         if ("desc".equals(describe)) {
             this.describe = "desc";
@@ -30,14 +33,6 @@ public class OrderBy {
 
     public String getDescribe() {
         return describe;
-    }
-
-    public void setDescribe(String describe) {
-        if ("desc".equals(describe)) {
-            this.describe = "asc";
-        } else {
-            this.describe = describe;
-        }
     }
 
     @Override

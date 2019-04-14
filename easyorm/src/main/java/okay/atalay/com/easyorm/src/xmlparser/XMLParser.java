@@ -598,7 +598,9 @@ public class XMLParser {
                     String avg = cElement.getAttribute(Constants.ATTRIBUTE_AVG).trim();
                     String count = cElement.getAttribute(Constants.ATTRIBUTE_COUNT).trim();
                     String process = cElement.getAttribute(Constants.ATTRIBUTE_PROCESS.trim());
+                    String type = cElement.getAttribute(Constants.ATTRIBUTE_TYPE.trim());
                     Having having = new Having(name);
+                    having.setType(type);
                     having.setValue(value);
                     having.setAvg(avg.equals("true"));
                     having.setSum(sum.equals("true"));
