@@ -74,15 +74,38 @@ There is 2 type of usage. First one is <strong>rawquery</strong>. Second one is 
 			<column name="infoID" value="1"/>
 		</insert>
 	</initialize>
-```	
-		
+```
+
 # Section 3
 <code> queries </code> this section should have <strong> query </strong> tags. <code> query </code> tags allow us to define select/insert/update/delete
 operation methods. <br> <code>query</code> must have type and name attribute. type attibute points the query type which can be select/insert/update/delete.
+<strong> note : getInformation getInformation2 getInformation3 and getInformation4 return the same results. </strong>
 <br><h5> usage example is </h5>
 <br>
 ```xml	
-	<query name="getInformation" type="select">
+	<query name="getInformation" columns="*" type="select">
+		<table name="informations"/>
+		<where name="ID"/>
+	</query>
+	<query name="getInformation2" type="select">
+		<column name="address" />
+		<column name="phone" />
+		<column name="ID" />
+		<table name="informations"/>
+		<where name="ID"/>
+	</query>
+	<query name="getInformation3" columns="address" type="select">
+		<column name="phone" />
+		<column name="ID" />
+		<table name="informations"/>
+		<where name="ID"/>
+	</query>
+	<query name="getInformation4" columns="ID,address,phone" type="select">
+		<table name="informations"/>
+		<where name="ID"/>
+	</query>
+	<query name="getInformation3" columns="address" type="select">
+		<column name="phone" />
 		<table name="informations"/>
 		<where name="ID"/>
 	</query>
@@ -166,7 +189,7 @@ We use the tag to create new table. <code>table</code> tag must have a unique <s
 	
 # Query Tag Attributes more Detail
 
-A <code>query</code> must have a unique<strong>name</strong> attribute and <code>type</code> attribute. 
+A <code>query</code> must have a unique <strong>name</strong> attribute and <code>type</code> attribute. 
 <br><code>type</code> should be select/insert/delete/update. <br><code>distinct</code> is optional default is false. usage is<strong> distinct="true"</strong>
 <br>Also it should have <code>columns</code> attribute. This attribute is used for select queries. if it is left empty, means that <strong>*</strong>
 if we select some fileds, <code>columns</code> should be used like <strong> select="name,lastname,number" </strong><br>
@@ -174,7 +197,7 @@ if we select some fileds, <code>columns</code> should be used like <strong> sele
 <code>query</code> tag can have <strong> table,column,where,orderBy,groupBys,havings</strong> tags.
 <br><code>query</code> tags can have dataSync attribute. it is set to true,a data sync event is distributed to all listeners after this query is executed
 <h3> Table Tag Attributes</h3>
-<li><strong>name</strong> it is mandatory attribute. it must point the valid table name. More than 1 <code>table</code> tags can be used.All tables will be join </li>
+<li><strong>name</strong> it is mandatory attribute. it must point the valid table name. More than 1 <code>table</code> tags can be used.All tables will be joined </li>
 <h3>Columns Tag Attributes</h3>
 <li><strong>name</strong> it is mandatory attribute. it must point the table field</li>
 <li><strong>sum</strong> it can be true/false. Aim is to calculate sum of filed's values. Default value is false. Valid for Select Queries</li>
