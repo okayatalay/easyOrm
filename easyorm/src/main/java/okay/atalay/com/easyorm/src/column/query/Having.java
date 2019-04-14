@@ -16,6 +16,7 @@ public class Having {
     private boolean greater;
     private boolean equals;
     private String process;
+    private String type = "varchar";
 
     public Having(String name) {
         this.name = name;
@@ -87,6 +88,17 @@ public class Having {
     }
 
     public void setValue(String value) {
+        if (value == null || value.equals("")) {
+            value = "?";
+        } else if (!value.equals("?")) {
+            if (type.equals("boolean")) {
+                if (value.equals("true")) {
+                    value = "1";
+                } else {
+                    value = "0";
+                }
+            }
+        }
         this.value = value;
     }
 
@@ -98,5 +110,16 @@ public class Having {
         } else {
             throw new SqlNotFoundException("Invalid process type for " + name);
         }
+    }
+
+    public void setType(String type) {
+        if (type == null || type.equals("")) {
+            type = "varchar";
+        }
+        this.type = type.toLowerCase();
+    }
+
+    public String getType() {
+        return type;
     }
 }
