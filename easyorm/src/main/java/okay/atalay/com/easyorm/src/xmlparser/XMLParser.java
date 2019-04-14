@@ -606,7 +606,7 @@ public class XMLParser {
                     having.setSum(sum.equals("true"));
                     having.setCount(count.equals("true"));
                     having.setLess(less.equals("true"));
-                    having.setEquals(equals.equals("true"));
+                    having.setEquals(!equals.equals("no"));
                     having.setGreater(great.equals("true"));
                     having.setProcess(process);
                     querySelect.addHaving(having);
@@ -771,6 +771,7 @@ public class XMLParser {
             }
         }
     }
+
     private Select parseSubQuerySelect(NodeList nodes) throws SqlNotFoundException {
         Node nNode = nodes.item(0);
         if (nNode == null) return null;

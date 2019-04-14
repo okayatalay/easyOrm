@@ -474,7 +474,17 @@ public class SQLGenerator {
                         builder.append(" != ");
                     }
                 }
-                builder.append(value);
+                if (value.equals("?")) {
+                    builder.append(value);
+                } else {
+                    if (Constants.NUMERIC.contains(having.getType())) {
+                        builder.append(value);
+                    } else {
+                        builder.append("'");
+                        builder.append(value);
+                        builder.append("'");
+                    }
+                }
                 builder.append(" ");
             }
         }
