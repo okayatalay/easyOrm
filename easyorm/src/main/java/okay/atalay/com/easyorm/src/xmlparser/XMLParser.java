@@ -36,6 +36,7 @@ import okay.atalay.com.easyorm.src.initialize.insertion.InitInsertion;
 import okay.atalay.com.easyorm.src.initialize.rawQuery.InitRawQuery;
 import okay.atalay.com.easyorm.src.query.QueryDelete;
 import okay.atalay.com.easyorm.src.query.QueryInsert;
+import okay.atalay.com.easyorm.src.query.QueryRawQuery;
 import okay.atalay.com.easyorm.src.query.QuerySelect;
 import okay.atalay.com.easyorm.src.query.QueryUpdate;
 import okay.atalay.com.easyorm.src.query.clauses.GroupBy;
@@ -51,6 +52,9 @@ import okay.atalay.com.easyorm.src.upgrade.UpgradeQuery;
 import okay.atalay.com.easyorm.src.upgrade.rawQuery.RawQuery;
 import okay.atalay.com.easyorm.src.upgrade.table.UpgradeTable;
 
+import static okay.atalay.com.easyorm.src.constant.Constants.QUERY;
+import static okay.atalay.com.easyorm.src.constant.Constants.RAW_QUERY;
+
 
 /**
  * Created by 1 on 9.03.2018.
@@ -61,13 +65,15 @@ public class XMLParser {
     private List<BaseQueryIF> queries;
     private List<UpgradeQuery> upgradeList;
     private List<UpgradeTable> upgradeTableList;
+    private List<QueryRawQuery> rawQueryList;
 
-    public XMLParser(List<Table> tableList, List<BaseQueryIF> queries, List<UpgradeQuery> upgrades, List<UpgradeTable> upgradeTableList) {
+    public XMLParser(List<Table> tableList, List<BaseQueryIF> queries, List<QueryRawQuery> rawQueryList, List<UpgradeQuery> upgrades, List<UpgradeTable> upgradeTableList) {
         super();
         this.tableList = tableList;
         this.queries = queries;
         this.upgradeList = upgrades;
         this.upgradeTableList = upgradeTableList;
+        this.rawQueryList = rawQueryList;
     }
 
     private final DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -83,7 +89,7 @@ public class XMLParser {
         if (initialize == null) {
             return;
         }
-        NodeList rawQueries = ((Element) initialize.item(0)).getElementsByTagName(Constants.RAW_QUERY);
+        NodeList rawQueries = ((Element) initialize.item(0)).getElementsByTagName(RAW_QUERY);
         if (rawQueries != null) {
             for (int i = 0; i < rawQueries.getLength(); i++) {
                 Node node = rawQueries.item(i);
@@ -154,7 +160,7 @@ public class XMLParser {
             if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element eElement = (Element) nNode;
                 String version = eElement.getAttribute(Constants.ATTRIBUTE_VERSION);
-                NodeList upgradeNodes = eElement.getElementsByTagName(Constants.RAW_QUERY);
+                NodeList upgradeNodes = eElement.getElementsByTagName(RAW_QUERY);
                 if (upgradeNodes != null) {
                     for (int i = 0; i < upgradeNodes.getLength(); i++) {
                         Node node = upgradeNodes.item(i);
@@ -412,11 +418,36 @@ public class XMLParser {
         if (tablesNodes == null || tablesNodes.getLength() != 1) {
             return;
         }
-        NodeList nodes = ((Element) tablesNodes.item(0)).getElementsByTagName(Constants.QUERY);
+        NodeList nodes = ((Element) tablesNodes.item(0)).getElementsByTagName(QUERY);
         if (nodes == null || nodes.getLength() == 0) {
             return;
         }
         parseQuery(nodes);
+        nodes = ((Element) tablesNodes.item(0)).getElementsByTagName(RAW_QUERY);
+        if (nodes == null || nodes.getLength() == 0) {
+            return;
+        }
+        parseQueryRawQuery(nodes);
+    }
+
+    private void parseQueryRawQuery(NodeList nodes) throws SqlNotFoundException {
+        for (int temp = 0; temp < nodes.getLength(); temp++) {
+            Node nNode = nodes.item(temp);
+            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                Element eElement = (Element) nNode;
+                String queryName = eElement.getAttribute(Constants.SQL_NAME).trim();
+                if (queryName.equals("")) {
+                    throwException(new SqlNotFoundException("RawQuery name must not be empty for " + queryName));
+                }
+                String query = eElement.getAttribute(Constants.ATTRIBUTE_QUERY).trim();
+                if (query.equals("")) {
+                    throwException(new SqlNotFoundException("RawQuery query must not be empty for " + queryName));
+                }
+                rawQueryList.add(new QueryRawQuery(queryName, query));
+            } else {
+                throwException(new SqlNotFoundException("invalid sql query in the xml file"));
+            }
+        }
     }
 
     private void parseQuery(NodeList nodes) throws SqlNotFoundException {

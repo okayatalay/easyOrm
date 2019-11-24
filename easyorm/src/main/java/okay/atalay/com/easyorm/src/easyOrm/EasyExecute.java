@@ -1,5 +1,7 @@
 package okay.atalay.com.easyorm.src.easyOrm;
 
+import android.database.Cursor;
+
 import java.util.List;
 
 import okay.atalay.com.easyorm.src.exception.FieldNotFoundException;
@@ -26,4 +28,6 @@ public interface EasyExecute {
     void update(String queryName, Object[] params) throws QueryNotFoundException, QueryExecutionException;
 
     void updateObject(String queryName, Object object) throws QueryNotFoundException, QueryExecutionException, FieldNotFoundException;
+
+    Cursor executeRawQuery(String queryName, String[] params) throws QueryNotFoundException, QueryExecutionException;
 }

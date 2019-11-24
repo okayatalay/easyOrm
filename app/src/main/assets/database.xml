@@ -135,7 +135,7 @@
             </havings>
         </query>
 
-
+         <rawquery name="select1" query="select * from table" />
 
     </queries>
 

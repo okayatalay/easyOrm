@@ -28,6 +28,7 @@ import okay.atalay.com.easyorm.src.exception.UpgradesTagException;
 import okay.atalay.com.easyorm.src.initialize.Initializer;
 import okay.atalay.com.easyorm.src.initialize.insertion.InitInsertion;
 import okay.atalay.com.easyorm.src.initialize.rawQuery.InitRawQuery;
+import okay.atalay.com.easyorm.src.query.QueryRawQuery;
 import okay.atalay.com.easyorm.src.query.queryAbstraction.BaseQueryIF;
 import okay.atalay.com.easyorm.src.upgrade.UpgradeQuery;
 import okay.atalay.com.easyorm.src.upgrade.UpgradeState;
@@ -43,7 +44,8 @@ public class EasyORM {
     private List<Table> tables = new ArrayList<>();
     private List<UpgradeTable> upgradeTableArrayList = new ArrayList<>();
     private List<UpgradeQuery> upgrades = new ArrayList<>();
-    private List<BaseQueryIF> QueryList = new ArrayList<>();
+    private List<BaseQueryIF> aueryList = new ArrayList<>();
+    private List<QueryRawQuery> queryRawQueries = new ArrayList<>();
     private Initializer initializer = new Initializer();
     private String databaseName;
     private EasyExecute easyExecute;
@@ -102,7 +104,7 @@ public class EasyORM {
 
     public EasyExecute getEasyExecute() {
         if (easyExecute == null) {
-            easyExecute = new EasyExecuteImpl(QueryList, this);
+            easyExecute = new EasyExecuteImpl(aueryList, queryRawQueries, this);
         }
         return easyExecute;
     }
@@ -113,7 +115,7 @@ public class EasyORM {
 
     public boolean registerXMLSchema(String xmlPath) throws Exception {
         long t1 = System.currentTimeMillis();
-        parser = new XMLParser(tables, QueryList, upgrades, upgradeTableArrayList);
+        parser = new XMLParser(tables, aueryList, queryRawQueries, upgrades, upgradeTableArrayList);
         parseTablesAndQueries(xmlPath);
         long t2 = System.currentTimeMillis();
         if (EasyOrmFactory.isVerboseQueries()) {
