@@ -464,6 +464,7 @@ Xml Defination is,
 					</select>
 				</where>
 			</query>
+			<rawquery name="select1" query="select * from users where ID=?" />
 
 		</queries>
 		<upgrades>
@@ -514,6 +515,9 @@ Execution performer interface methods are<br>
 	void update(String queryName, Object[] params) throws QueryNotFoundException, QueryExecutionException;
 
 	void updateObject(String queryName, Object object) throws QueryNotFoundException, QueryExecutionException, FieldNotFoundException;
+	
+	Cursor executeRawQuery(String queryName, String[] params) throws QueryNotFoundException, QueryExecutionException;
+	
 ```
 
 # log Level
@@ -534,7 +538,7 @@ database.xml file must be under <code>Assets</code> folder. To create <Strong>As
 	dependencies {
 		:
 		:
-		compile 'com.github.okayatalay:easyOrm:1.0.4'
+		compile 'com.github.okayatalay:easyOrm:1.0.5'
 	}
 
 maven { url 'https://jitpack.io' } should be added to into project built.gradle file under allprojects -> repositories
