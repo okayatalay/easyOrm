@@ -105,6 +105,21 @@ class Execute {
         }
     }
 
+    public static Cursor executeQueryRawQuery(SQLiteDatabase db, String sql, String[] parms) throws QueryExecutionException {
+        try {
+            generateLog(new Sql(sql), parms);
+            if (parms != null) {
+                return db.rawQuery(sql, parms);
+            } else {
+                return db.rawQuery(sql, null);
+            }
+        } catch (Exception e) {
+            throw new QueryExecutionException("Exception occurs while update query is executing :" + sql + e);
+        } finally {
+            db.close();
+        }
+    }
+
     private static void generateLog(Sql sql, Object[] parms) {
         if (EasyOrmFactory.isVerboseQueries()) {
             StringBuilder params = new StringBuilder(250);

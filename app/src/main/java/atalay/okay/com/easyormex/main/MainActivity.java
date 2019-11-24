@@ -1,5 +1,6 @@
 package atalay.okay.com.easyormex.main;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -35,6 +36,15 @@ public class MainActivity extends AppCompatActivity implements DataSyncListener 
         listView = findViewById(R.id.listView);
         listView.setAdapter(adapter);
         fillAdapter();
+        try {
+            Cursor cursor1 = DatabaseManager.easyExecute.executeRawQuery("select1", null);
+            // do whatever you want
+            cursor1.close();
+        } catch (QueryNotFoundException e) {
+            e.printStackTrace();
+        } catch (QueryExecutionException e) {
+            e.printStackTrace();
+        }
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

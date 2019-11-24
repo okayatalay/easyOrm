@@ -1,5 +1,6 @@
 package okay.atalay.com.easyorm.src.easyOrm.execution;
 
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
@@ -13,6 +14,7 @@ import okay.atalay.com.easyorm.src.NameValuePair;
 import okay.atalay.com.easyorm.src.column.query.QueryColumn;
 import okay.atalay.com.easyorm.src.constant.Constants;
 import okay.atalay.com.easyorm.src.dataSync.DataSyncListener;
+import okay.atalay.com.easyorm.src.easyOrm.EasyExecute;
 import okay.atalay.com.easyorm.src.easyOrm.EasyORM;
 import okay.atalay.com.easyorm.src.easyOrm.factory.EasyOrmFactory;
 import okay.atalay.com.easyorm.src.exception.ConstructorNotFoundException;
@@ -21,6 +23,7 @@ import okay.atalay.com.easyorm.src.exception.QueryExecutionException;
 import okay.atalay.com.easyorm.src.exception.QueryNotFoundException;
 import okay.atalay.com.easyorm.src.query.QueryDelete;
 import okay.atalay.com.easyorm.src.query.QueryInsert;
+import okay.atalay.com.easyorm.src.query.QueryRawQuery;
 import okay.atalay.com.easyorm.src.query.QuerySelect;
 import okay.atalay.com.easyorm.src.query.QueryUpdate;
 import okay.atalay.com.easyorm.src.query.clauses.Where;
@@ -29,17 +32,19 @@ import okay.atalay.com.easyorm.src.query.queryAbstraction.DataSyncImpIF;
 import okay.atalay.com.easyorm.src.query.queryAbstraction.Query;
 import okay.atalay.com.easyorm.src.query.queryAbstraction.SqlImpIF;
 
-public class EasyExecuteImpl implements okay.atalay.com.easyorm.src.easyOrm.EasyExecute {
+public class EasyExecuteImpl implements EasyExecute {
 
     private List<BaseQueryIF> queries;
     private EasyORM easyORM;
+    private List<QueryRawQuery> queryRawQueries;
     private final String QUERY_TAG = "EasyORM.query";
     private Object lock = new Object();
 
-    public EasyExecuteImpl(List<BaseQueryIF> queries, EasyORM easyORM) {
+    public EasyExecuteImpl(List<BaseQueryIF> queries, List<QueryRawQuery> queryRawQueries, EasyORM easyORM) {
         super();
         this.easyORM = easyORM;
         this.queries = queries;
+        this.queryRawQueries = queryRawQueries;
     }
 
     /**
@@ -418,6 +423,15 @@ public class EasyExecuteImpl implements okay.atalay.com.easyorm.src.easyOrm.Easy
         sendDataSync(q, true);
     }
 
+    @Override
+    public Cursor executeRawQuery(String queryName, String[] params) throws QueryNotFoundException, QueryExecutionException {
+        QueryRawQuery query = findQueryRawQuery(queryName);
+        if (query == null) {
+            throw new QueryNotFoundException(" query not found for given queryName " + queryName);
+        }
+        return Execute.executeQueryRawQuery(easyORM.getWritableDatabase(), query.getSql(), params);
+    }
+
     private SqlImpIF findQuery(String queryName) {
         for (BaseQueryIF q : queries) {
             SqlImpIF s = (SqlImpIF) q;
@@ -426,6 +440,18 @@ public class EasyExecuteImpl implements okay.atalay.com.easyorm.src.easyOrm.Easy
                     Log.d(QUERY_TAG, s.getSql().getSql());
                 }
                 return s;
+            }
+        }
+        return null;
+    }
+
+    private QueryRawQuery findQueryRawQuery(String queryName) {
+        for (QueryRawQuery q : queryRawQueries) {
+            if (q.getName().equals(queryName)) {
+                if (EasyOrmFactory.verboseQueries) {
+                    Log.d(QUERY_TAG, q.getSql());
+                }
+                return q;
             }
         }
         return null;
