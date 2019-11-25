@@ -8,6 +8,7 @@ public class QueryRawQuery {
     private String name;
     private String sql;
 
+
     public QueryRawQuery(String name, String sql) {
         this.name = name;
         this.sql = sql;

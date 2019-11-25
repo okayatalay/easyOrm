@@ -1,6 +1,5 @@
 package okay.atalay.com.easyorm.src.easyOrm.execution;
 
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
@@ -424,12 +423,14 @@ public class EasyExecuteImpl implements EasyExecute {
     }
 
     @Override
-    public Cursor executeRawQuery(String queryName, String[] params) throws QueryNotFoundException, QueryExecutionException {
+    public void executeRawQuery(String queryName, Object[] params) throws QueryNotFoundException, QueryExecutionException {
         QueryRawQuery query = findQueryRawQuery(queryName);
         if (query == null) {
             throw new QueryNotFoundException(" query not found for given queryName " + queryName);
         }
-        return Execute.executeQueryRawQuery(easyORM.getWritableDatabase(), query.getSql(), params);
+        synchronized (lock) {
+            Execute.executeQueryRawQuery(easyORM.getWritableDatabase(), query.getSql(), params);
+        }
     }
 
     private SqlImpIF findQuery(String queryName) {
