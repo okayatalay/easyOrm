@@ -516,7 +516,7 @@ Execution performer interface methods are<br>
 
 	void updateObject(String queryName, Object object) throws QueryNotFoundException, QueryExecutionException, FieldNotFoundException;
 	
-	Cursor executeRawQuery(String queryName, String[] params) throws QueryNotFoundException, QueryExecutionException;
+	void executeRawQuery(String queryName, Object[] params) throws QueryNotFoundException, QueryExecutionException;
 	
 ```
 
@@ -538,7 +538,7 @@ database.xml file must be under <code>Assets</code> folder. To create <Strong>As
 	dependencies {
 		:
 		:
-		compile 'com.github.okayatalay:easyOrm:1.0.4'
+		compile 'com.github.okayatalay:easyOrm:1.0.8'
 	}
 
 maven { url 'https://jitpack.io' } should be added to into project built.gradle file under allprojects -> repositories
