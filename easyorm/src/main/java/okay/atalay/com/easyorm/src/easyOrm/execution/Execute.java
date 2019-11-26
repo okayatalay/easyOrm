@@ -105,13 +105,13 @@ class Execute {
         }
     }
 
-    public static Cursor executeQueryRawQuery(SQLiteDatabase db, String sql, String[] parms) throws QueryExecutionException {
+    public static void executeQueryRawQuery(SQLiteDatabase db, String sql, Object[] parms) throws QueryExecutionException {
         try {
             generateLog(new Sql(sql), parms);
             if (parms != null) {
-                return db.rawQuery(sql, parms);
+                db.execSQL(sql, parms);
             } else {
-                return db.rawQuery(sql, null);
+                db.execSQL(sql);
             }
         } catch (Exception e) {
             throw new QueryExecutionException("Exception occurs while update query is executing :" + sql + e);

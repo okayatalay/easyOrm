@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-group='com.github.oatalay'
+group = 'com.github.oatalay'
 android {
     compileSdkVersion 26
 

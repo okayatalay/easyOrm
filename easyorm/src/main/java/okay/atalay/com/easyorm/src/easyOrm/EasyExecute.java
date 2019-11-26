@@ -29,5 +29,5 @@ public interface EasyExecute {
 
     void updateObject(String queryName, Object object) throws QueryNotFoundException, QueryExecutionException, FieldNotFoundException;
 
-    Cursor executeRawQuery(String queryName, String[] params) throws QueryNotFoundException, QueryExecutionException;
+    void executeRawQuery(String queryName, Object[] params) throws QueryNotFoundException, QueryExecutionException;
 }
