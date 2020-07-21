@@ -286,9 +286,13 @@ public class SQLGenerator {
                     } else {
                         builder.append(" not like ");
                     }
-                    builder.append(" '");
-                    builder.append(value);
-                    builder.append("' ");
+                    if (value.equals("?")) {
+                        builder.append(value);
+                    } else {
+                        builder.append(" '");
+                        builder.append(value);
+                        builder.append("' ");
+                    }
                 } else {
                     builder.append(operand);
                     if (value.equals("?")) {

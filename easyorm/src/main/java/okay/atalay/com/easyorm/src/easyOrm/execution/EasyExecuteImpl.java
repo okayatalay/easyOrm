@@ -97,7 +97,10 @@ public class EasyExecuteImpl implements EasyExecute {
                                         method.invoke(t, new Date(nvp.getValue().toString()));
                                     } else if (field.getGenericType() == Boolean.class) {
                                         Method method = t.getClass().getMethod("set" + nvp.getName().substring(0, 1).toUpperCase().replace("İ", "I") + nvp.getName().substring(1), field.getType());
-                                        boolean enable = nvp.getValue().equals("true") || nvp.getValue().equals(1) ? true : false;
+                                        boolean enable = false;
+                                        if (nvp.getValue() != null) {
+                                            enable = nvp.getValue().equals("true") || nvp.getValue().equals(1) ? true : false;
+                                        }
                                         method.invoke(t, enable);
                                     } else {
                                         Method method = t.getClass().getMethod("set" + nvp.getName().substring(0, 1).toUpperCase().replace("İ", "I") + nvp.getName().substring(1), field.getType());
@@ -164,7 +167,10 @@ public class EasyExecuteImpl implements EasyExecute {
                                         method.invoke(t, new Date(nvp.getValue().toString()));
                                     } else if (field.getGenericType() == Boolean.class) {
                                         Method method = t.getClass().getMethod("set" + nvp.getName().substring(0, 1).toUpperCase().replace("İ", "I") + nvp.getName().substring(1), field.getType());
-                                        boolean enable = nvp.getValue().equals("true") || nvp.getValue().equals(1) ? true : false;
+                                        boolean enable = false;
+                                        if (nvp.getValue() != null) {
+                                            enable = nvp.getValue().equals("true") || nvp.getValue().equals(1) ? true : false;
+                                        }
                                         method.invoke(t, enable);
                                     } else {
                                         Method method = t.getClass().getMethod("set" + nvp.getName().substring(0, 1).toUpperCase().replace("İ", "I") + nvp.getName().substring(1), field.getType());
