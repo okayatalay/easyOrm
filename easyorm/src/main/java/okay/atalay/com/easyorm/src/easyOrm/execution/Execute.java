@@ -19,10 +19,11 @@ import okay.atalay.com.easyorm.src.sql.Sql;
 class Execute {
 
     protected static void executeSelection(SQLiteDatabase liteDatabase, Sql sql, String[] parms, ColumnNotify callBack) throws QueryExecutionException {
+        Cursor cursor = null;
         try {
             generateLog(sql, parms);
             List<List<NameValuePair>> resultList = new ArrayList<>();
-            Cursor cursor = liteDatabase.rawQuery(sql.getSql(), parms);
+            cursor = liteDatabase.rawQuery(sql.getSql(), parms);
             String[] columnNames = cursor.getColumnNames();
             int i = 0;
             while (cursor.moveToNext()) {
@@ -56,6 +57,9 @@ class Execute {
             throw new QueryExecutionException("Exception occurs while query is executing :" + e);
         } finally {
             liteDatabase.close();
+            if (cursor != null) {
+                cursor.close();
+            }
         }
 
     }
@@ -80,10 +84,11 @@ class Execute {
     public static void executeDeletion(SQLiteDatabase db, Sql sql, Object[] parms) throws QueryExecutionException {
         try {
             generateLog(sql, parms);
-            if (parms != null)
+            if (parms != null) {
                 db.execSQL(sql.getSql(), parms);
-            else
+            } else {
                 db.execSQL(sql.getSql());
+            }
         } catch (Exception e) {
             throw new QueryExecutionException("Exception occurs while deletion query is executing :" + sql.getSql() + e);
         } finally {
@@ -94,10 +99,11 @@ class Execute {
     public static void executeUpdate(SQLiteDatabase db, Sql sql, Object[] parms) throws QueryExecutionException {
         try {
             generateLog(sql, parms);
-            if (parms != null)
+            if (parms != null) {
                 db.execSQL(sql.getSql(), parms);
-            else
+            } else {
                 db.execSQL(sql.getSql());
+            }
         } catch (Exception e) {
             throw new QueryExecutionException("Exception occurs while update query is executing :" + sql.getSql() + e);
         } finally {
@@ -125,8 +131,9 @@ class Execute {
             StringBuilder params = new StringBuilder(250);
             if (parms != null) {
                 for (int i = 0; i < parms.length; i++) {
-                    if (i != 0)
+                    if (i != 0) {
                         params.append(",");
+                    }
                     params.append(parms[i]);
                 }
             }
