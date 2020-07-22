@@ -56,9 +56,15 @@ class Execute {
         } catch (Exception e) {
             throw new QueryExecutionException("Exception occurs while query is executing :" + e);
         } finally {
-            liteDatabase.close();
-            if (cursor != null) {
-                cursor.close();
+            try {
+                liteDatabase.close();
+            } catch (Exception e) {
+            }
+            try {
+                if (cursor != null) {
+                    cursor.close();
+                }
+            } catch (Exception e) {
             }
         }
 
@@ -77,7 +83,10 @@ class Execute {
         } catch (Exception e) {
             throw new QueryExecutionException("Exception occurs while insertion query is executing :" + sql.getSql() + e);
         } finally {
-            db.close();
+            try {
+                db.close();
+            } catch (Exception e) {
+            }
         }
     }
 
@@ -92,7 +101,10 @@ class Execute {
         } catch (Exception e) {
             throw new QueryExecutionException("Exception occurs while deletion query is executing :" + sql.getSql() + e);
         } finally {
-            db.close();
+            try {
+                db.close();
+            } catch (Exception e) {
+            }
         }
     }
 
@@ -107,7 +119,10 @@ class Execute {
         } catch (Exception e) {
             throw new QueryExecutionException("Exception occurs while update query is executing :" + sql.getSql() + e);
         } finally {
-            db.close();
+            try {
+                db.close();
+            } catch (Exception e) {
+            }
         }
     }
 
@@ -122,7 +137,10 @@ class Execute {
         } catch (Exception e) {
             throw new QueryExecutionException("Exception occurs while update query is executing :" + sql + e);
         } finally {
-            db.close();
+            try {
+                db.close();
+            } catch (Exception e) {
+            }
         }
     }
 
