@@ -159,7 +159,7 @@ public class EasyExecuteImpl implements EasyExecute {
                                         //try to get field from main class
                                         field = t.getClass().getDeclaredField(nvp.getName());
                                     } catch (NoSuchFieldException e) {
-                                        //maybe field can be in superclass
+                                        //field maybe in superclass
                                         field = t.getClass().getSuperclass().getDeclaredField(nvp.getName());
                                     }
                                     if (field.getGenericType() == Date.class) {
