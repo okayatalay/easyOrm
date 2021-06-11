@@ -99,7 +99,7 @@ public class EasyExecuteImpl implements EasyExecute {
                                         Method method = t.getClass().getMethod("set" + nvp.getName().substring(0, 1).toUpperCase().replace("İ", "I") + nvp.getName().substring(1), field.getType());
                                         boolean enable = false;
                                         if (nvp.getValue() != null) {
-                                            enable = nvp.getValue().equals("true") || nvp.getValue().equals(1) ? true : false;
+                                            enable = nvp.getValue().equals("true") || nvp.getValue().equals(1) || nvp.getValue().equals("1") ? true : false;
                                         }
                                         method.invoke(t, enable);
                                     } else {
@@ -169,7 +169,7 @@ public class EasyExecuteImpl implements EasyExecute {
                                         Method method = t.getClass().getMethod("set" + nvp.getName().substring(0, 1).toUpperCase().replace("İ", "I") + nvp.getName().substring(1), field.getType());
                                         boolean enable = false;
                                         if (nvp.getValue() != null) {
-                                            enable = nvp.getValue().equals("true") || nvp.getValue().equals(1) ? true : false;
+                                            enable = nvp.getValue().equals("true") || nvp.getValue().equals(1) || nvp.getValue().equals("1") ? true : false;
                                         }
                                         method.invoke(t, enable);
                                     } else {
