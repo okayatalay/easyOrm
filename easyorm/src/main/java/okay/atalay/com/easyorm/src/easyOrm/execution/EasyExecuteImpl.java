@@ -8,6 +8,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import okay.atalay.com.easyorm.src.NameValuePair;
 import okay.atalay.com.easyorm.src.column.query.QueryColumn;
@@ -93,17 +94,17 @@ public class EasyExecuteImpl implements EasyExecute {
                                         field = t.getClass().getSuperclass().getDeclaredField(nvp.getName());
                                     }
                                     if (field.getGenericType() == Date.class) {
-                                        Method method = t.getClass().getMethod("set" + nvp.getName().substring(0, 1).toUpperCase().replace("İ", "I") + nvp.getName().substring(1), field.getType());
+                                        Method method = t.getClass().getMethod("set" + nvp.getName().substring(0, 1).toUpperCase(Locale.ENGLISH).replace("İ", "I") + nvp.getName().substring(1), field.getType());
                                         method.invoke(t, new Date(nvp.getValue().toString()));
                                     } else if (field.getGenericType() == Boolean.class) {
-                                        Method method = t.getClass().getMethod("set" + nvp.getName().substring(0, 1).toUpperCase().replace("İ", "I") + nvp.getName().substring(1), field.getType());
+                                        Method method = t.getClass().getMethod("set" + nvp.getName().substring(0, 1).toUpperCase(Locale.ENGLISH).replace("İ", "I") + nvp.getName().substring(1), field.getType());
                                         boolean enable = false;
                                         if (nvp.getValue() != null) {
                                             enable = nvp.getValue().equals("true") || nvp.getValue().equals(1) || nvp.getValue().equals("1") ? true : false;
                                         }
                                         method.invoke(t, enable);
                                     } else {
-                                        Method method = t.getClass().getMethod("set" + nvp.getName().substring(0, 1).toUpperCase().replace("İ", "I") + nvp.getName().substring(1), field.getType());
+                                        Method method = t.getClass().getMethod("set" + nvp.getName().substring(0, 1).toUpperCase(Locale.ENGLISH).replace("İ", "I") + nvp.getName().substring(1), field.getType());
                                         method.invoke(t, nvp.getValue());
                                     }
                                 } catch (Exception e) {
@@ -163,17 +164,17 @@ public class EasyExecuteImpl implements EasyExecute {
                                         field = t.getClass().getSuperclass().getDeclaredField(nvp.getName());
                                     }
                                     if (field.getGenericType() == Date.class) {
-                                        Method method = t.getClass().getMethod("set" + nvp.getName().substring(0, 1).toUpperCase().replace("İ", "I") + nvp.getName().substring(1), field.getType());
+                                        Method method = t.getClass().getMethod("set" + nvp.getName().substring(0, 1).toUpperCase(Locale.ENGLISH).replace("İ", "I") + nvp.getName().substring(1), field.getType());
                                         method.invoke(t, new Date(nvp.getValue().toString()));
                                     } else if (field.getGenericType() == Boolean.class) {
-                                        Method method = t.getClass().getMethod("set" + nvp.getName().substring(0, 1).toUpperCase().replace("İ", "I") + nvp.getName().substring(1), field.getType());
+                                        Method method = t.getClass().getMethod("set" + nvp.getName().substring(0, 1).toUpperCase(Locale.ENGLISH).replace("İ", "I") + nvp.getName().substring(1), field.getType());
                                         boolean enable = false;
                                         if (nvp.getValue() != null) {
                                             enable = nvp.getValue().equals("true") || nvp.getValue().equals(1) || nvp.getValue().equals("1") ? true : false;
                                         }
                                         method.invoke(t, enable);
                                     } else {
-                                        Method method = t.getClass().getMethod("set" + nvp.getName().substring(0, 1).toUpperCase().replace("İ", "I") + nvp.getName().substring(1), field.getType());
+                                        Method method = t.getClass().getMethod("set" + nvp.getName().substring(0, 1).toUpperCase(Locale.ENGLISH).replace("İ", "I") + nvp.getName().substring(1), field.getType());
                                         method.invoke(t, nvp.getValue());
                                     }
                                 } catch (Exception e) {
@@ -247,7 +248,7 @@ public class EasyExecuteImpl implements EasyExecute {
             int i = 0;
             for (String column : columns) {
                 try {
-                    Method method = input.getClass().getMethod("get" + column.substring(0, 1).toUpperCase().replace("İ", "I") + column.substring(1), null);
+                    Method method = input.getClass().getMethod("get" + column.substring(0, 1).toUpperCase(Locale.ENGLISH).replace("İ", "I") + column.substring(1), null);
                     Object parm = method.invoke(input, null);
                     parms[i++] = parm;
                 } catch (Exception e) {
@@ -310,7 +311,7 @@ public class EasyExecuteImpl implements EasyExecute {
         for (Where where : whereClauses) {
             String name = where.getName();
             try {
-                Method method = object.getClass().getMethod("get" + name.substring(0, 1).toUpperCase().replace("İ", "I") + name.substring(1), null);
+                Method method = object.getClass().getMethod("get" + name.substring(0, 1).toUpperCase(Locale.ENGLISH).replace("İ", "I") + name.substring(1), null);
                 Object parm = method.invoke(object, null);
                 parms[i++] = parm;
             } catch (Exception e) {
@@ -397,7 +398,7 @@ public class EasyExecuteImpl implements EasyExecute {
             if (column.getAttribute(Constants.ATTRIBUTE_VALUE).getValue().equals("?")) {
                 String columnName = column.getAttribute(Constants.ATTRIBUTE_NAME).getValue();
                 try {
-                    Method method = object.getClass().getMethod("get" + columnName.substring(0, 1).toUpperCase() + columnName.substring(1), null);
+                    Method method = object.getClass().getMethod("get" + columnName.substring(0, 1).toUpperCase(Locale.ENGLISH) + columnName.substring(1), null);
                     Object parm = method.invoke(object, null);
                     parms.add(parm);
                 } catch (Exception e) {
@@ -412,7 +413,7 @@ public class EasyExecuteImpl implements EasyExecute {
         for (Where where : whereClauses) {
             String name = where.getName();
             try {
-                Method method = object.getClass().getMethod("get" + name.substring(0, 1).toUpperCase() + name.substring(1), null);
+                Method method = object.getClass().getMethod("get" + name.substring(0, 1).toUpperCase(Locale.ENGLISH) + name.substring(1), null);
                 Object parm = method.invoke(object, null);
                 parms.add(parm);
             } catch (Exception e) {
